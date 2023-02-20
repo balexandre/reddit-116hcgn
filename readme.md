@@ -18,9 +18,45 @@ It uses an `.http` file (found in the `test` folder) that creates a POSTMAN alik
 
 One can run `npm run docs` to generate an HTML file containing the API documentation
 
+![msedge_d19EQAdpbq](https://user-images.githubusercontent.com/45473/219985167-2ead8667-c266-4394-aa6d-df8960384fd0.png)
+
 ## Route validation
 
-Open API schema is also been used to validate the routes
+Open API schema is also been used to validate the routes, an example response:
+
+```javascript
+HTTP/1.1 400 Bad Request
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 348
+ETag: W/"15c-XUvH2jFxzWx5DqpsVJkHgq3nQf4"
+Date: Mon, 20 Feb 2023 00:27:49 GMT
+Connection: close
+
+{
+  "message": "Validation error",
+  "details": [
+    {
+      "keyword": "required",
+      "dataPath": "",
+      "schemaPath": "#/required",
+      "params": {
+        "missingProperty": "title"
+      },
+      "message": "should have required property 'title'"
+    },
+    {
+      "keyword": "required",
+      "dataPath": "",
+      "schemaPath": "#/required",
+      "params": {
+        "missingProperty": "imageUrl"
+      },
+      "message": "should have required property 'imageUrl'"
+    }
+  ]
+}
+```
 
 ## Run with Docker
 
