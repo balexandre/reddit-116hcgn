@@ -22,9 +22,9 @@ One can run `npm run docs` to generate an HTML file containing the API documenta
 
 ## Route validation
 
-Open API schema is also been used to validate the routes, an example response:
+Open API schema is also been used to validate the routes by simple using it [like this](https://github.com/balexandre/reddit-116hcgn/blob/18f9684a7b349444e968442ca3d5ecfa95578169/server/routes/stories.js#L14-L22), an example response:
 
-```javascript
+```http
 HTTP/1.1 400 Bad Request
 X-Powered-By: Express
 Content-Type: application/json; charset=utf-8
