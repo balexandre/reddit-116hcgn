@@ -1,0 +1,27 @@
+type: object
+description: A story
+properties:
+  status:
+    type: string
+  references:
+    type: array
+  tags:
+    type: array
+  mapStyle:
+    type: string
+  likes:
+    type: array
+  _id:
+    type: string
+  title:
+    type: string
+  imageUrl:
+    type: string
+  events:
+    type: array
+  createdAt:
+    type: string
+  updatedAt:
+    type: string
+  __v:
+    type: integer

@@ -1,0 +1,190 @@
+openapi: 3.0.0
+info:
+  title: reddit-116hcgn api
+  version: 1.0.0
+  contact:
+    name: Bruno Alexandre
+    url: https://github.com/balexandre
+servers:
+  - url: http://localhost:3001/api/v1
+    description: Development server
+tags:
+  - name: Root
+    description: endpoints related to the root of the application
+  - name: Stories
+    description: endpoints related to stories
+  - name: Events in Stories
+    description: endpoints related to events in stories
+paths:
+  /:
+    get:
+      summary: Returns a json message
+      tags:
+        - Root
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./components/schemas/routeData.schema.yml
+  /stories:
+    get:
+      summary: Lists all the stories
+      tags:
+        - Stories
+      parameters:
+        - in: query
+          name: limit
+          required: false
+          description: specifies the limit of the stories in the response, default is 10
+          example: 10
+          schema:
+            type: integer
+        - in: query
+          name: skip
+          required: false
+          description: specifies the amount of stories to skip, default is 0
+          example: 12
+          schema:
+            type: integer
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./components/schemas/listStories.schema.yml
+        400:
+          $ref: ./components/responses/badRequest.yml
+        401:
+          $ref: ./components/responses/unauthorized.yml
+    post:
+      summary: Creates a new story
+      tags:
+        - Stories
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: ./components/schemas/createStory.schema.yml
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./components/schemas/createStory.schema.yml
+        400:
+          $ref: ./components/responses/badRequest.yml
+        401:
+          $ref: ./components/responses/unauthorized.yml
+  /stories/{storyId}:
+    parameters:
+      - in: path
+        name: storyId
+        schema:
+          type: string
+        required: true
+        description: the story identifier
+        example: "63f2b166235e9f6364307736"
+    get:
+      summary: Gets a given story
+      tags:
+        - Stories
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./components/schemas/listStory.schema.yml
+        400:
+          $ref: ./components/responses/badRequest.yml
+        401:
+          $ref: ./components/responses/unauthorized.yml
+    delete:
+      summary: Deletes a given story
+      tags:
+        - Stories
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/records/DeleteRecord.schema.yml
+        400:
+          $ref: ./components/responses/badRequest.yml
+        401:
+          $ref: ./components/responses/unauthorized.yml
+  /stories/{storyId}/events:
+    parameters:
+      - in: path
+        name: storyId
+        schema:
+          type: string
+        required: true
+        description: the story identifier
+        example: "63f2b166235e9f6364307736"
+    get:
+      summary: Lits all the events for a given story
+      tags:
+        - Events in Stories
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./components/schemas/listEvents.schema.yml
+        400:
+          $ref: ./components/responses/badRequest.yml
+        401:
+          $ref: ./components/responses/unauthorized.yml
+    post:
+      summary: Adds a new event to a given story
+      tags:
+        - Events in Stories
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/records/ModifyRecord.schema.yml
+        400:
+          $ref: ./components/responses/badRequest.yml
+        401:
+          $ref: ./components/responses/unauthorized.yml
+  /stories/{storyId}/events/{eventId}:
+    parameters:
+      - in: path
+        name: storyId
+        schema:
+          type: string
+        required: true
+        description: the story identifier
+        example: "63f2b166235e9f6364307736"
+      - in: path
+        name: eventId
+        schema:
+          type: string
+        required: true
+        description: the event identifier
+        example: "63f2b166235e9f6364307736"
+    delete:
+      summary: Deletes a given event from a given story
+      tags:
+        - Events in Stories
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: ./schemas/records/DeleteRecord.schema.yml
+        400:
+          $ref: ./components/responses/badRequest.yml
+        401:
+          $ref: ./components/responses/unauthorized.yml

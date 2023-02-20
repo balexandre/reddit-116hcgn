@@ -1,0 +1,9 @@
+type: object
+description: Database response for modifying a record
+properties:
+  np:
+    type: integer
+  ok:
+    type: integer
+  nModified:
+    type: integer

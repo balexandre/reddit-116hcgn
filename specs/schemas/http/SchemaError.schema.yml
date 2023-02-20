@@ -1,0 +1,22 @@
+type: object
+description: Schema validation errors
+properties:
+  keyword:
+    type: string
+    description: validation keyword
+  dataPath:
+    type: string
+    description: the path to the part of the data that was validated
+  schemaPath:
+    type: string
+    description: The path to the schema of the keyword that failed validation
+  params:
+    type: object
+    additionalProperties: true
+    properties:
+      missingProperty:
+        type: string
+        description: Key of the missing property
+  message:
+    type: string
+    description: Error message

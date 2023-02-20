@@ -1,0 +1,28 @@
+type: object
+description: Properties of a story
+required: ["title", "imageUrl"]
+properties:
+  title:
+    type: string
+    description: Title of the story
+    minLength: 5
+  summary:
+    type: string
+  imageUrl:
+    type: string
+  status:
+    type: string
+    default: public
+    enum:
+      - public
+      - private
+  references:
+    type: array
+    items:
+      type: string
+  likes:
+    type: array
+    items:
+      type: string
+  events:
+    $ref: ./listEvents.schema.yml

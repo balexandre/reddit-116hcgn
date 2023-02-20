@@ -1,0 +1,6 @@
+type: object
+description: Payload of route call
+properties:
+  message:
+    type: string
+    description: Describes that the route is working

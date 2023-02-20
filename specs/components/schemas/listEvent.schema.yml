@@ -1,0 +1,7 @@
+type: object
+description: Story event data
+properties:
+  _id:
+    type: string
+  title:
+    type: string
